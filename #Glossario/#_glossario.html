@@ -1,0 +1,327 @@
+
+<!--PESSOAL DE DOUGLAS SENA-->
+<!--ESSE ARQUIVO É UMA REFERÊNCIA CONTENDO AS TAGS, COMANDOS E INFORMAÇÕES RELEVANTES ENCONTRADAS NO CURSO ALURA-->
+<!--Objeto-->
+    guardar tudo dentro de js/app;
+    Começando com letra maiuscula para deixar claro que o JS é uma Classe (EX: Script.js);
+        <script>
+            class Negociacao{//Definindo uma classe
+
+                //    "_underline" underline antes de um atributo aponta que ele não pode ser acessado/lido sem utilizar um metodo da classe
+                //USAMOS O UNDERLINE PARA APONTAR AS INFORMAÇÕES QUE NÃO DEVEM SER ALTERADAS/ACESSADAS FORA DA CLASS
+                constructor (data, quantidade, valor){//construindo seus atributos
+                    this._data = new Date(data.getTime());// note que para data, usamos um metodo que irá criar uma data fixa, sem possibilidade de alteração externa
+                    this._quantidade = quantidade;
+                    this._valor = valor;
+                    Object.freeze(this); //apos atribuir os valores, congelamos o objeto para que não seja modificado.
+                }
+
+                //estabelecendo um Metodo para processar dados, note que é uma function mas como está dentro de classe chamamos de Metodo
+                //NOTE QUE, COMO TEM UNDERLINE NOS ATRIBUTOS, VAMOS CRIAR OS METODOS QUE RETORNAM O VALOR PARA LEITURA
+                //USAMOS O GET POIS COM ELE FACILITA PARA CHAMAR UM OBJETO E IMPEDE QUE A ESCRITA SEJA REALIZADA
+                get Data(){
+                    return new Date(this._data.getTime());//Quando for chamada a data, retornamos uma nova data (baseada na original), evitando que a pessoa acesse a orginal
+                }
+                
+                get Quantidade(){
+                    return this._quantidade
+                }
+                
+                get Valor(){
+                    return this._valor
+                }
+                
+                get Volume(){
+                return this._quantidade * this._valor; 
+                }
+            }
+        </script>
+    
+    Funções dentro de classe, chamamos de Metodo
+
+
+
+
+<!--BÁSICO HTML-->
+    <!DOCTYPE HTML> <!--DECLARAÇÃO DO TIPO DE DOCUMENTO-->
+    <html lang="pt-BR"> <!--IDENTIFICA A BASE DO HTML/RAIZ/ONDE ELE SE APOIA E A LINGUÁGEM DA PÁGINA-->
+        <head> <!--CABEÇALHO PRINCIPAL. CONTEM META INFORMAÇÕES DA PÁGINA(INFO PARA FUNCIONAMENTO, NAVEGADOR E GOOGLEBOT)-->
+            <link rel="stylesheet" href="localCSS.css"> <!--REFERÊNCIA A PÁGINA DE CSS-->
+            <link rel="icon" href="localicon.ico"> <!--REFERÊNCIA AO ÍCONE APRENSENTADO NO NAVEGADOR-->
+            <meta charset="utf-8"> <!--DECLARAÇÃO DO Cadeia de Caracteres (character set encoding) PARA LEITURA DO HTML)-->
+            <title>Titulo</title> <!--TÍTULO DA PÁGINA(INFORMAÇÃO QUE APARECE NA GUIA)-->
+        </head> <!--FECHAMENTO DO CABEÇALHO PRINCIPAL)-->
+        <body> <!--CORPO DO HTML-->
+            
+        </body>
+    </html><!--FECHAMENTO DA BASE DO HTML/RAIZ/ONDE ELE SE APOIA-->
+
+<!--Boas Práticas e Lembretes-->
+    JS - controla
+    CSS - Decora E cria efeitos visuais
+    HTML - amarra
+    TAG MAIUSCULO - Funciona, entretanto, é considerado um forma incorreta e não bem vista de se escrever HTML
+    Sintaxe - relação entre as palavras - Leitores entendem o problema
+    Semântica - Sentido / Lógica - Leitores não entendem o problema
+    Concatenar - Unir diretamente sem espaços - (comum quando queremos fazer texto + calculo no JS)
+    VAR dentro da function - coisas criadas dentro de uma função so existem dentro dela até que utilizamos o return
+
+<!--ORGANIZAÇÃO-->
+    Vários arquivos - mantenha sempre os arquivos separados por funcionalidade para facilitar o reuso e manutenção - calcula.js, inserir.js etc
+    Function - sempre tranforme em function aquilo que queremos reutilizar no código
+
+<!--HTML-->
+    <a href="http://LinkDaPagina.com.br">TextoDoLink</a> <!--Ancora para linkagem de conteúdo -->
+    <input/> <!--Abre uma caixinha de texto para preenchimento. como a tag <meta> não há a necessidade de fechamento da tag input.-->
+    <button>TextoDoBotão</button><!--Cria um botão-->
+    <canvas>Criar tela de desenho</canvas><!--Cria uma tela para desenho no HTML-->
+
+<!--JAVASCRIPT-->
+
+    <script>//TAG de idenficiação de código para navegador ler como JavaScript
+
+
+    (parenteses);//
+    {chaves};//
+    [colchetes];//
+
+    var qualquer = 0;//IGUAL - Sempre que tiver um igual, lê se RECEBE
+    QualquerCoisa == QualquerCoisa; //IGUAL IGUAL - Sempre que tiver 2 igual juntos estamos sinalizando uma comparação de algo com algo
+    QualquerCoisa != QualquerCoisa; //EXCLAMAÇÃO IGUAL - significa que são DIFERENTES
+    !QualquerCoisa; //regra para contrário de algo, Não é algo 
+    function verboSinalizaFuncao(parametros){instruções}; // Uma function é sempre um VERBO e vem no início do código criar uma função dentro do código para que execute o que está no bloco da function {}
+    alert("InfoPopUP");//instrução que ALERTA o usuário, sobe uma PopUP
+    "STRING"; // Nome dado ao Texto em JavaScript, é sinalizado pelas aspas duplas
+    Math.round(); //Math = matemática . round=arredondar
+    Math.random(); //Math = matemática . ramdom=aleatório - Passa um número aleatório abaixo de 0(se quise acima de 0 multiplique por 10/100/1000...)
+    Math.PI; //valor de Pi - 3,14...
+    Math.floor();//Arredonda número para baixo
+    var observacaoVariavel = 0 ;//varivel sempre começa com letra minuscula
+    nomeDaVariavel.tofixed(2); //fixar o número de casas decimais em 2 de alguma variavel, colocado depois do nome da var
+    replace("coisa1", "coisa2");
+    isNaN(nomeDaVariavel); //Quando queremos validar uma saida se é um numero ou NaN (Not A Number) 
+    for ([inicialização]; [condição]; [expressãofinal]) {declaração} // Nomeclatura de parametros do for
+    Number(FonteDoNumero);//Para receber numeros
+    parseInt(FonteDoNumero);//Para reber números e idenfificá-los como inteiros (RECEBE SOMENTE O QUE ESTÁ ANTES DA VIRGULA)
+    parseFloat(FonteDoNumero);//Para reber números e idenfificá-los como decimais (RECEBE O QUE ESTA ANTES DE DEPOIS DA VIRGULA)
+    let nomeDaVariavel = document.querySelector("NomeDaTagBuscada");// busca informações contidas em determinada tag para uso do JS (<button>, <input>, etc..)
+    NomeDaVariavel.value();//Usamos para pegar apenas o valor/Preenchimento de uma variável ou um input buscado no HTML
+    NomeDaVariavel.focus();//deixar o objeto focado, caixa de texto pronta para receber valor
+
+
+// -----------------  ARRAY ------------------
+    let nomeDasVariaveis = [0, 1, 2, 3];//[Array] = Declarar uma variavel com diversos valores,
+    nomeDoArray = [0];//para peguar um elemento do array separado, preciso pedir baseado em sua posição (O ZERO CONTA COMO PRIMEIRO)
+    nomeDoArray.push("O que vou empurrar para dentro do array"); // posso usar o PUSH para inserir itens dentro de um array
+    nomeDoArray.length;//LENGTH - Irá retornar o número de itens que tem no array - [0, 1, 2, 3, 4, 5] = 6 intens (0+5)
+        "L E N G T H"; //Lembre-se da forma correta de escrever
+
+//-------------- OBJETO -----------------
+    //Quando pegamos algum conteúdo vindo de uma página, seja um formulário ou dado padrão como parametros do MOUSE
+    //Podemos usar a chamada de propriedades usando as chaves {} em uma variavel
+    //é tipo um array só que os dados são mais complexos
+    let eventMouse = {
+        clique: event.mouse.clique, //isso não está certo
+        moveUp: event.mouse.moveUp // ETC
+    }
+
+
+    (x % 2 !== 0); /* % = MODULO - verificar se o resto da divisão de x por 2 é diferente de zero
+    % - Restante (Remainder - as vezes chamado de MODULO) Retorna o resto da divisão em números inteiros do número da esquerda pelo número da direita.
+    8 % 3 (retorna 2; como três cabe duas vezes em 8, deixando 2 como resto.) */
+    "true","false"; // booleano
+    return "algo"; //return - pode ser usado dentro de funções para mandar algo específico para fora da function
+
+//-------------- CANVAS / DESENHANDO -------------------------------------------------------------------------------
+
+    var tela = document.querySelector("canvas");//busca o canvas (cara que desenha no HTML)
+    var pincel = tela.getContext("2d");//Pede ao canvas um pincel
+    "Eixo X  __ " // eixos usados para movimentação na canvas - tela
+    "Eixo Y |   " // eixos usados para movimentação na canvas - tela
+
+    //traçar um retangulo/quadrado
+    pincel.fillRect(1, 2, 3, 4);//1 = Início X | 2 = Início Y | 3 = FIM X | 4 = FIM Y
+
+    //traçar um arco ou circulo
+    pincel.beginPath();//o cara que desenha arcos
+    pincel.arc(300, 200, 100, 0, 2 * Math.PI);//função arc com dimenções sendo(x, y, raio, anguloInicial, fimEmRadianus)
+                            //   ⇈    ⇈⇈⇈ - Para fazer um circulo basta informar o radianus de circurlo (2 raio * PI)     
+    pincel.fill();//preencher o arco desenhado se não ele não aparece
+    
+    NomeDaVar.oncontextmenu = nomeDaFunction; // CLICAR COM DIREITO oncontextmenu - apresentação do menu - é quando clicamos com ou botão direito do mouse
+    NomeDaVar.onclick = nomeDaFunction; // CLICAR COM ESQUERDO onclick é usado para pegar o clique do mouse, quando usamos o navegador passa todas as informações de identificação do mouse
+        // LEMBRE QUE O ONCLICK CONSIDERA A LOCALIZAÇÃO NA PÁGINA COMO UM TODO, NÃO SOMENTE DENTRO DO CAVAS = use esse abaixo para corrigir
+    qualquer.offsetTop; //offsetTop/offsetLeft/etc espaço entre o canvas e a direção apontada. Podemos usar para subtrair um espaço vazio e calcular areas corretamente
+
+    function nomeDaFunction(evento){
+    evento.infoDoClique; // pegando um evento do onclick - coloco o nome e a informação desejada de um evento de mouse
+    evento.pageX; // pegando eixo X do click
+    evento.pageY; // pegando eixo Y do click
+    evento.shiftKey; // pegando situação do SHIFT no click apertado = (true or false)
+    evento.altKey; // pegando situação do ALT no click apertado = (true or false)
+    evento.ctrlKey; //pegando situação do CTRL no click apertado = (true or false)
+    evento.onmousedown;  // pegando o pressionamento do botão
+    evento.onmouseup;  // pegando o soltar do botão
+    evento.onmousemove; // pegando o movimento do mouse
+    }
+
+
+    setInterval(nomeDaFunction, 2000);// Irá chamar uma função de tempo em tempo
+                        //      ⇈⇈⇈ - time é em milisegundos 2000 = 2seg
+
+//-----------------------------------------------------------------------------------
+
+    var NomeDaVar = document.querySelector("QuemVamosSelecionar"); //podemos colocar o nome do que será selecionado no formato de CSS (nomeTag .nomeClass #nomeID)
+    document.querySelectorALL("NomeDaSelecao"); //busca tudo com determinada tag/class/id e cria uma var com array
+    NomeDaVar.textContent = "Conteúdo do que foi selecionado"; // usamos textContent para alterar o conteúdo de algo buscado no HTML
+    NomeDaVar.style.color = "red"; // usamos o style para controlar o estilo de algo que busquei no HTML
+    NomeDaVar.classList.add(nomeDaClassCSS); //usamos o classList para controlar a classe de algo que busquei no HTML - add - adicionar class
+    NomeDaVar.addEventListener("click", function(event){ // escutador de eventos - Escuta um evento no HTML do tipo "click" e, ao ocorrer o evento, executa uma função
+        event.preventDefault()// Usamos isso dentro de uma função para evitar que a ação default(Padrão) de um botão seja executada
+    });
+    VarQueTemInfoHTML.appendChild(VarQueSeraGuardada) // inserir algo dentro de uma var - por exemplo, se nossa var é uma LI podemos inserir itens nessa lista com appendChild
+
+
+//----------- EVENTOS CONTROLES ------------------------------------------------------------------------
+    setTimeout(nomeDaFunction, 500); //para que o tempo corra normalmente, devemos chamar a função sem executala ou criar uma função anónima.
+    this.remove(); //THIS - Realiza algo associado a quem chama o evento (addEventListener), nesse caso o que foi chamado é uma remoção.
+    this; //é o dono do evento, se quiser info de quem sofreu o evento (não quem chamou) utilize um event.target
+    event.target; //Usamos para especificar quem sofreu o evento (clique, moveDoMouse etc)
+    event.target.parentNode;// Quando quero identificar quem é o alvo do evento, mas pegar seu Pai/Parente
+
+
+//----------- ExpressãoRegular ------------------------------------------------------------------------
+    //Criei uma expressão regular, estou falando para ela, onde está a informação que ela vai buscar e o tipo de conteúdo
+    var expressao = new RegExp(ondeEstaOValor, "i"); // com o I, estamos dizendo conteúdo Insensível, ou seja, tanto faz se é maiusculo ou minusculo, no meio ou no início do texto
+        //Com a expressão regular em mãos, podemos usá-la para fazer IFs, ou seja, filtra nosso conteúdo com uma
+        //A expressão regular, irá permitir fazer testes para identificar se coincide ou não
+        if (!expressao.test(nome)) { //Com o "expressaoregular.test"(conteúdo buscado) iremos verifica se algo coincide ou não
+                    paciente.classList.add("invisivel");// Nesse caso, se não coincide estamos dizendo "invisível" ou seja, não mostre
+                } else {
+                    paciente.classList.remove("invisivel");//do contrário, mostre!
+                    }
+
+
+//----------- Boleano / Bolean ------------------------------------------------------------------------
+
+    document.write()// document é a representação do DOM (Document Object Model), que é a própria página para o navegador
+    algo && algo; // algo and algo
+    algo || algo; // algo or algo
+    !algo; // o contrário de algo - se for um boleano a Exclamação busca o false ao invês de true
+    </script>
+
+<!-- CSS - interessantes -->
+
+    https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
+    <style type="text/css">
+        .NomeDaTagClassId{
+            opacity: 0;/*Muda a opacidade para o valor determinado*/
+            transition: 0.5s;/*Fala em quanto tempo a transição para essa decoração acontece*/
+            display: none;/*Desativa algo, transforma em "invisível"*/
+            z-index: 1; /*Define que o elemento é prioridade 1 sobre os demais (se ta tudo junto ele fica em cima de todos)*/
+            position: fixed; /*Define que ira ficar em cima do conteúdo*/
+            /*Quando eu quero esconder algo, jogo tudo para a esquerda, nesse caso, para aparecer basta jogar na tela, dará impressão de um menu que abriu por cima, mas ele sempre esteve lá*/
+            overflow: scroll; /*Deixa o espaço da barra de rolagem reservado para que a página não se mova quando a rolagem some ou aparece*/
+        }
+    </style>
+
+
+<!--VS Code-->
+    Alt + ↓ = mudar a linha de lugar para baixo
+    Alt + ↑ = mudar a linha de lugar para cima
+    Ctrl +D = selecionar termos iguais no texto abaixo para alteração - pequenos textos
+    Ctrl +F = Localizar e substituir
+    Shift + Alt + ↓ = duplicar a linha atual para baixo
+    Ctrl + C e Ctrl + V = Copiar e colar linhas de código (não precisa selecionar antes)
+    Alt + CliqueMouse1 = Clicar em vários lugares para escrever ou alterar simultaneamente
+    Ctrl + Shift + Alt + ↓ ou ↑ = Escrever ou alterar diversas linhas simultaneamente
+    Shift + Alt + F = IDENTAÇÃO AUTOMÁTICA
+    div>p>a = Colocar a informação hierarquizada com ">" (Maior que) irá criar todas as tags dentro das maiores
+    div>h1+p = Usa a mesma fução de cima mas torando 2 irmãos
+    div.menu>ul>li#item$*5>a|c:link = Criação de uma div com class="menu", dentro uma ul, dentro uma li com ID * 5, com a + link | com comentários
+            RESULTADO:
+                <div class="menu">
+                    <ul>
+                        <li id="item1"><a href=""></a></li>
+                        <!-- /#item1 -->
+                        <li id="item2"><a href=""></a></li>
+                        <!-- /#item2 -->
+                        <li id="item3"><a href=""></a></li>
+                        <!-- /#item3 -->
+                        <li id="item4"><a href=""></a></li>
+                        <!-- /#item4 -->
+                        <li id="item5"><a href=""></a></li>
+                        <!-- /#item5 -->
+                    </ul>
+                </div>
+                <!-- /.menu -->
+
+
+<!--HTML-->
+Recurso: URI - o recurso utilizado
+
+Representação: formato da apresentação pode ser HTML XML ou JSON (mais comuns)
+ 
+
+Opereções(Params na URL):
+            GET - Solicitar recursos - Incluido na própria URL usando "?" e concatenando vários com "&"
+            POST - Inserir recursos
+            PATH - Atualiza parte específica dos recursos
+                PUT - Atualiza todo o recurso
+            DELETE - Remover recursos
+            
+Retornos:
+            2XX -> Respostas de sucesso
+            3XX -> Mensagem de redirecionamento
+            4XX -> Respostas de erro do cliente
+            5XX -> Respostas de erro do servidor
+
+REST - [RE]presentation [S]tate [T]ransfer
+
+
+<!--JQuery-->
+O JQuery já vem com diversas funções, entre elas:
+    <script>
+        var nomeDaVariavel;
+
+
+    $("conteúdo HTML"/*div*/);//buscar conteúdos no DOM
+    $("conteúdo HTML"/*div*/).css("nomeDoElemento" /*backgroundColor*/);//Para pegar uma propriedade CSS específica
+    $(function(){}); //tudo que estiver dentro da função será executado quando a página termina de ser carregada
+    nomeDaVariavel.val(); //pega valor de algum lugar
+    nomeDaVariavel.on("Evento", function(){}); // escutar eventos o tempo todo e agir
+    nomeDaVariavel.one("Evento", function(){}); // Escutar ento uma unica vez e agir
+    
+    nomeDaVariavel.attr("NomeDoAtributo"); //Busca atributos no DOM
+    nomeDaVariavel.attr("NomeDoAtributo", NovoValor ); //Busca atributos no DOM e modifica seu valor
+    
+    nomeDaVariavel.text();//Podemos deixar vazio para buscar o conteúdo ou preencher os parametros para alterar o contéudo
+    
+    nomeDaVariavel.append(Conteudo);//Podemos usara para criar itens, inserir linhas ou unir conteúdos (appendChild)
+    nomeDaVariavel.preppend(Conteudo); //Mesma coisa de cima, mas coloca PRIMEIRO no texto.
+
+    nomeDaVariavel.show("nomeDaClasse")//mostra algo (block)
+    nomeDaVariavel.hide("nomeDaClasse")//esconde algo (none)
+    nomeDaVariavel.toggle("nomeDaClasse")//Se está aparecendo, some, se está sumido aparece
+
+
+    nomeDaVariavel.addClass("nomeDaClasse")//Adiciona Classe
+    nomeDaVariavel.removeClass("nomeDaClasse")//Remove Classe
+    nomeDaVariavel.toggleClass("nomeDaClasse")//Se existe, será removido, se não existe, será adicionada
+    
+    nomeDaVariavel.substr(0/*inicio*/, 200/*Fim*/);// quando quero comparar apenas uma parte de um todo, usa se o substr e se aponta qual o tamanho da comparação
+    nomeDaVariavel = textoComparacao.startsWith(textoVerificado); //Essa função pode ser usada para comparar o conteúdo digitado com um conteúdo X.
+    
+    $.get("http://localhost", function(data){}); //Buscando informação Ajax com get
+    $.get("http://localhost", entregaFiltro,function(data){});//Podemosusar get nesse formato para passar uma informação e filtrar o retorno
+    $.post("http://localhost", dadosPost,function(data){});// essa function não é obrigatória, pode se usada para confirmar
+
+
+    // <!--EVENTOS-->
+
+    variavel.click(function(){});// funciona exatamento como o on("Envento") mas é um atalho do JQuery
+    variavel.input(function(){});// funciona exatamento como o on("Envento") mas é um atalho do JQuery
+    variavel.focus(function(){});// funciona exatamento como o on("Envento") mas é um atalho do JQuery
+
+    </script>
