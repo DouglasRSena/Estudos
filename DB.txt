@@ -1,0 +1,143 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema CadastroDeAlunos
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema CadastroDeAlunos
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `CadastroDeAlunos` DEFAULT CHARACTER SET utf8 ;
+USE `CadastroDeAlunos` ;
+
+-- -----------------------------------------------------
+-- Table `CadastroDeAlunos`.`Endereco`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `CadastroDeAlunos`.`Endereco` (
+  `idEndereco` INT NOT NULL,
+  `cep` VARCHAR(45) NULL,
+  `estado` VARCHAR(45) NULL,
+  `cidade` VARCHAR(45) NULL,
+  `bairro` VARCHAR(45) NULL,
+  `logradouro` VARCHAR(45) NULL,
+  `numero` INT NULL,
+  `complemento` VARCHAR(45) NULL,
+  PRIMARY KEY (`idEndereco`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `CadastroDeAlunos`.`Aluno`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `CadastroDeAlunos`.`Aluno` (
+  `matricula` VARCHAR(45) NOT NULL,
+  `nome` VARCHAR(100) NULL,
+  `cpf` VARCHAR(45) NULL,
+  `e-mail` VARCHAR(45) NULL,
+  `Endereco_idEndereco` INT NOT NULL,
+  PRIMARY KEY (`matricula`, `Endereco_idEndereco`),
+  INDEX `fk_Aluno_Endereco_idx` (`Endereco_idEndereco` ASC) VISIBLE,
+  CONSTRAINT `fk_Aluno_Endereco`
+    FOREIGN KEY (`Endereco_idEndereco`)
+    REFERENCES `CadastroDeAlunos`.`Endereco` (`idEndereco`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `CadastroDeAlunos`.`Professor`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `CadastroDeAlunos`.`Professor` (
+  `cpf` INT NOT NULL,
+  `nome` VARCHAR(45) NULL,
+  `e-mail` VARCHAR(45) NULL,
+  PRIMARY KEY (`cpf`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `CadastroDeAlunos`.`Turma`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `CadastroDeAlunos`.`Turma` (
+  `idTurma` INT NOT NULL,
+  `nomeDaTurma` VARCHAR(45) NULL,
+  `Professor_cpf` INT NOT NULL,
+  PRIMARY KEY (`idTurma`, `Professor_cpf`),
+  INDEX `fk_Turma_Professor1_idx` (`Professor_cpf` ASC) VISIBLE,
+  CONSTRAINT `fk_Turma_Professor1`
+    FOREIGN KEY (`Professor_cpf`)
+    REFERENCES `CadastroDeAlunos`.`Professor` (`cpf`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `CadastroDeAlunos`.`Matricula`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `CadastroDeAlunos`.`Matricula` (
+  `Aluno_matricula` VARCHAR(45) NOT NULL,
+  `Turma_idTurma` INT NOT NULL,
+  PRIMARY KEY (`Aluno_matricula`, `Turma_idTurma`),
+  INDEX `fk_Aluno_has_Turma_Turma1_idx` (`Turma_idTurma` ASC) VISIBLE,
+  INDEX `fk_Aluno_has_Turma_Aluno1_idx` (`Aluno_matricula` ASC) VISIBLE,
+  CONSTRAINT `fk_Aluno_has_Turma_Aluno1`
+    FOREIGN KEY (`Aluno_matricula`)
+    REFERENCES `CadastroDeAlunos`.`Aluno` (`matricula`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Aluno_has_Turma_Turma1`
+    FOREIGN KEY (`Turma_idTurma`)
+    REFERENCES `CadastroDeAlunos`.`Turma` (`idTurma`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+
+
+
+INSERT INTO `cadastrodealunos`.`endereco`
+(`idEndereco`,`cep`,`estado`,`cidade`,`bairro`,`logradouro`,`numero`,`complemento`) VALUES
+(2,30330901,'MG','Belo Horizonte','Centro','Rua 2',2,'casa'),
+(3,30333000,'MG','Belo Horizonte','Feliz','Rua 3',3,'apto 102'),
+(4,30333000,'MG','Belo Horizonte','Feliz','Rua 4',4,'apto 104');
+
+
+
+INSERT INTO `cadastrodealunos`.`aluno`
+(`matricula`,`nome`,`cpf`,`e-mail`,`Endereco_idEndereco`) VALUES
+(1,'Givanilson José',111.111.111-11,<{e-mail: }>,<{Endereco_idEndereco: }>),
+(2,'Marinilza Maria',<{cpf: }>,<{e-mail: }>,<{Endereco_idEndereco: }>),
+(3,'Douglas Sena',<{cpf: }>,<{e-mail: }>,<{Endereco_idEndereco: }>),
+(4,'Fabrício Passos',<{cpf: }>,<{e-mail: }>,<{Endereco_idEndereco: }>);
+
+
+
+1 Givanilson
+José
+111.111.111-11 givanilson@gmail.com
+TI
+
+2 Marinilza
+Maria
+222.222.222-22 marinilza@gmail.com
+TA
+
+3 <Seu nome> 333.333.333-33 Seu_nome@gmail.com
+TM
+
+4 Fabrício 
+Passos
+888.888.888-88 fabricio@gmail.com
+TI
